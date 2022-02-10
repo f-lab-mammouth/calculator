@@ -23,21 +23,19 @@ public class SampleTest {
     @Test
     @DisplayName("1 + 2 * 3 - 4 / 5 = 1")
     void calculate_test1() {
-        Deque<Integer> numIter = new ArrayDeque<>(List.of(1, 2, 3, 4, 5));
-        Deque<String> operatorIter = new ArrayDeque<>(List.of("+", "*", "-", "/"));
+        String expression = "1 + 2 * 3 - 4 / 5";
 
-        int res = calculateHandler.calculate(numIter, operatorIter);
+        int res = calculateHandler.calculate(expression);
 
         assertThat(res).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("2 + 3 * 4 - 2 = 10")
+    @DisplayName("2 + 3 * 4 / 2 = 10")
     void calculate_test2() {
-        Deque<Integer> numIter = new ArrayDeque<>(List.of(2, 3, 4, 2));
-        Deque<String> operatorIter = new ArrayDeque<>(List.of("+", "*", "/"));
+        String expression = "2 + 3 * 4 / 2";
 
-        int res = calculateHandler.calculate(numIter, operatorIter);
+        int res = calculateHandler.calculate(expression);
 
         assertThat(res).isEqualTo(10);
     }
@@ -45,10 +43,9 @@ public class SampleTest {
     @Test
     @DisplayName("1 + 0 - 10 * 5 / 9 = -5")
     void calculate_test3() {
-        Deque<Integer> numIter = new ArrayDeque<>(List.of(1, 0, 10, 5, 9));
-        Deque<String> operatorIter = new ArrayDeque<>(List.of("+", "-", "*", "/"));
+        String expression = "1 + 0 - 10 * 5 / 9";
 
-        int res = calculateHandler.calculate(numIter, operatorIter);
+        int res = calculateHandler.calculate(expression);
 
         assertThat(res).isEqualTo(-5);
     }
@@ -56,10 +53,9 @@ public class SampleTest {
     @Test
     @DisplayName("10 + 20 * 30 - 40 / 10 = 86")
     void calculate_test4() {
-        Deque<Integer> numIter = new ArrayDeque<>(List.of(10, 20, 30, 40, 10));
-        Deque<String> operatorIter = new ArrayDeque<>(List.of("+", "*", "-", "/"));
+        String expression = "10 + 20 * 30 - 40 / 10";
 
-        int res = calculateHandler.calculate(numIter, operatorIter);
+        int res = calculateHandler.calculate(expression);
 
         assertThat(res).isEqualTo(86);
     }

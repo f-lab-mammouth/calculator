@@ -5,9 +5,9 @@ public class Application {
 
     public static void main(String[] args) {
         CalculateHandler calculateHandler = new CalculateHandlerImpl();
-        Calculator calculator = new Calculator(calculateHandler);
+        InputHandler inputHandler = new InputHandlerImpl();
+        Calculator calculator = new Calculator(calculateHandler, inputHandler);
 
-        calculator.inputData();
         System.out.println("calculator.calculate() = " + calculator.calculate());
     }
 }

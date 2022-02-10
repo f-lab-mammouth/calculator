@@ -4,33 +4,33 @@ import java.util.*;
 
 public class CalculateHandlerImpl implements CalculateHandler {
 
-    @Override
-    public int calculate(Deque<Integer> numDeque, Deque<String> operatorDeque) {
+    private final ArrayDeque<Integer> numIter = new ArrayDeque<>();
+    private final ArrayDeque<String> operatorIter = new ArrayDeque<>();
 
-        for (String operator : operatorDeque) {
-            int leftNum = numDeque.poll();
-            int rightNum = numDeque.poll();
+    @Override
+    public int calculate(String expression) {
+        splitExpression(expression);
+        for (String operator : operatorIter) {
+            int leftNum = numIter.poll();
+            int rightNum = numIter.poll();
 
             switch (operator) {
-                case Operator.PLUS -> numDeque.addFirst(leftNum + rightNum);
-                case Operator.MINUS -> numDeque.addFirst(leftNum - rightNum);
-                case Operator.MULTIPLY -> numDeque.addFirst(leftNum * rightNum);
-                case Operator.DIVIDE -> numDeque.addFirst(leftNum / rightNum);
+                case Operator.PLUS -> numIter.addFirst(leftNum + rightNum);
+                case Operator.MINUS -> numIter.addFirst(leftNum - rightNum);
+                case Operator.MULTIPLY -> numIter.addFirst(leftNum * rightNum);
+                case Operator.DIVIDE -> numIter.addFirst(leftNum / rightNum);
             }
         }
-        return numDeque.poll();
+        return numIter.poll();
     }
 
     @Override
-    public void inputData(Deque<Integer> numCollection, Deque<String> operatorCollection) {
-        Scanner scanner = new Scanner(System.in);
-
-        String expression = scanner.nextLine();
+    public void splitExpression(String expression) {
         for (String s : expression.split(" ")) {
             if (isDigit(s)) {
-                numCollection.add(Integer.valueOf(s));
+                numIter.add(Integer.valueOf(s));
             } else {
-                operatorCollection.add(s);
+                operatorIter.add(s);
             }
         }
     }

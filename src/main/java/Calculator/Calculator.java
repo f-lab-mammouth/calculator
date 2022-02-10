@@ -1,22 +1,19 @@
 package Calculator;
 
-import java.util.ArrayDeque;
-
 public class Calculator {
 
+    private String expression;
     private CalculateHandler calculateHandler;
-    private final ArrayDeque<Integer> numIter = new ArrayDeque<>();
-    private final ArrayDeque<String> operatorIter = new ArrayDeque<>();
+    private InputHandler inputHandler;
 
-    public Calculator(CalculateHandler calculateHandler) {
+    public Calculator(CalculateHandler calculateHandler, InputHandler inputHandler) {
         this.calculateHandler = calculateHandler;
+        this.inputHandler = inputHandler;
     }
 
     public int calculate() {
-        return calculateHandler.calculate(numIter, operatorIter);
-    }
-
-    public void inputData() {
-        calculateHandler.inputData(numIter, operatorIter);
+        expression = inputHandler.inputData();
+        calculateHandler.splitExpression(expression);
+        return calculateHandler.calculate(expression);
     }
 }
