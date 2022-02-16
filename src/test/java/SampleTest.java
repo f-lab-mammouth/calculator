@@ -6,7 +6,9 @@ public class SampleTest {
 
     @Test
     void sample_test() {
-        int target = 1 + 2;
-        assertThat(target).isEqualTo(3);
+        Integer a = 1;
+        System.out.println(a);
+
+        String[] arr = new String[] { "a", "b", "c"};
     }
 }
